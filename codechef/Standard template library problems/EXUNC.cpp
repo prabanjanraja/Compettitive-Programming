@@ -1,3 +1,4 @@
+/* https://www.codechef.com/LRNDSA03/problems/EXUNC */
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -168,22 +169,57 @@ void offset(ll o, ar<T, S> &x)
     EACH(a, x)
     offset(o, a);
 }
-vector<int> A(1e6 + 1);
+
 void solve()
 {
     int n, k;
     read(n, k);
-    vector<int> A(n);
-    read(A);
+    vector<long> A;
+    set<long> s;
+    FOR(n)
+    {
+        int x;
+        read(x);
+        if (i)
+        {
+            auto y = A.back();
+            if (x % y != 0)
+                s.insert(i);
+        }
+        else
+        {
+            s.insert(i);
+        }
+        A.push_back(x);
+    }
     FOR(k)
     {
-        int c;
-        read(c);
-        int ind;
+        int c, ind, rep;
+        read(c, ind);
+        ind -= 1;
         if (c == 1)
         {
-            int rep;
-            read(ind, rep);
+            read(rep);
+            A[ind] = rep;
+            if (A[ind] % A[ind - 1] == 0)
+                s.erase(ind);
+            else
+            {
+                s.insert(ind);
+            }
+            if (A[ind + 1] % A[ind] == 0)
+            {
+                s.erase(ind + 1);
+            }
+            else
+            {
+                s.insert(ind + 1);
+            }
+        }
+        else
+        {
+            auto it = s.upper_bound(ind);
+            print(*--it + 1);
         }
     }
 }

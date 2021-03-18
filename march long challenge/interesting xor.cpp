@@ -173,23 +173,9 @@ void solve()
 {
     int N, n = 1;
     read(N);
-    int mx = 0;
     int s;
     while (1 << n <= N)
         ++n;
-    /* 
-    int x = 0, y = 0;
-    FOR(N)
-    {
-        int m = (N ^ i) * i;
-        if (m > mx)
-        {
-            x = i;
-            y = N ^ i;
-            mx = m;
-        }
-    }
-    print(mx); */
     int x = (1 << n - 1) - 1;
     int y = N ^ x;
     print(x * y);
